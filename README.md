@@ -1,4 +1,4 @@
 Modfwango
 =========
 
-An IRCd written in PHP.
+Modfwango is an IRCd written in PHP.
