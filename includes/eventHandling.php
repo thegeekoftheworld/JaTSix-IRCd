@@ -6,9 +6,9 @@
 			self::$events[] = array($event, $class, $callback);
 		}
 		
-		public static function unregisterForEvent($event, $class, $callback) {
+		public static function unregisterForEvent($event, $class) {
 			foreach (self::$events as $id => $entry) {
-				if (strtolower($entry[1]->name) == strtolower($class->name)) {
+				if (strtolower($entry[0]) == strtolower($event) && strtolower($entry[1]->name) == strtolower($class->name)) {
 					unset(self::$events[$id]);
 				}
 			}
