@@ -61,7 +61,7 @@
 			$status = @socket_recv($this->clients[$id], $buffer, 4096, 0);
 			if ($status === 0 && $buffer === null) {
 				socket_close($this->clients[$id]);
-				unset($this->clients[$id]);
+				$this->clients[$id] = false;
 			}
 			else {
 				if (trim(str_ireplace("\004", null, $buffer)) != null) {

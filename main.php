@@ -15,11 +15,17 @@
 	while (true) {
 		foreach (SocketManagement::getSocketIDs() as $sid) {
 			$socket = SocketManagment::getSocketByID($sid);
+			
+			$newClientID = $socket->acceptNewClient();
+			if ($newClientID != false) {
+				ClientManagement::newClient(new Client($sid, $newClientID));
+			}
+			
 			foreach ($socket->getClientSocketIDs() as $cid) {
 				$clientSocket = $socket->getClientSocketByID($cid);
 				$data = $clientSocket->receiveData($cid);
 				if ($data != false) {
-					EventHandling::triggerEvent("rawDataReceived", array($id, $data));
+					EventHandling::triggerEvent("rawDataReceived", array($sid, $cid, $data));
 				}
 			}
 		}
