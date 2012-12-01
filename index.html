@@ -36,13 +36,297 @@
 <p>Modfwango is an IRCd written in PHP.  The two objectives that v0.9 of this project aims to meet are:</p>
 
 <ul>
-<li>To be RFC 1459 compliant.</li>
+<li>To be (almost) RFC 1459 compliant.  See below for more details.</li>
 <li>To provide a standalone IRC daemon that is unlinkable.</li>
 </ul><p>The objective that v1.0 of this project aims to meet is:</p>
 
 <ul>
 <li>To provide a linking protocol compatible with other Modfwango daemons and Charybdis.</li>
-</ul><p>This project will be made publicly available when RFC 1459 compliancy is met.</p>
+</ul><h1>RFC 1459 Compliancy</h1>
+
+<p>As mentioned in the previous section, RFC 1459 partial compliancy will have to be met.  This means that a few commands were omitted, and some have been changed.  The following commands will have to be implemented:</p>
+
+<h3>ADMIN</h3>
+
+<p>Syntax:  <code>ADMIN</code></p>
+
+<blockquote>
+<p>Instructs the server to return information about the administrator of the current server.</p>
+</blockquote>
+
+<h3>AWAY</h3>
+
+<p>Syntax:  <code>AWAY [&lt;message&gt;]</code></p>
+
+<blockquote>
+<p>Provides the server with a message to automatically send in reply to a PRIVMSG directed at the user, but not to a channel they are on. If  is omitted, the away status is removed.</p>
+</blockquote>
+
+<h3>DIE</h3>
+
+<p>Syntax:  <code>DIE</code></p>
+
+<blockquote>
+<p>Instructs the server to shut down.</p>
+</blockquote>
+
+<h3>ERROR</h3>
+
+<p>Syntax:  <code>ERROR &lt;error message&gt;</code></p>
+
+<blockquote>
+<p>This command is used before terminating client connections.</p>
+</blockquote>
+
+<h3>INFO</h3>
+
+<p>Syntax:  <code>INFO</code></p>
+
+<blockquote>
+<p>Returns information about the current server. Information returned includes the server's version, when it was compiled, the patch level, when it was started, and any other information which may be considered to be relevant.</p>
+</blockquote>
+
+<h3>INVITE</h3>
+
+<p>Syntax:  <code>INVITE &lt;nickname&gt; &lt;channel&gt;</code></p>
+
+<blockquote>
+<p>Invites  to the channel .  does not have to exist, but if it does, only members of the channel are allowed to invite other clients. If the channel mode i is set, only channel operators may invite other clients.</p>
+</blockquote>
+
+<h3>ISON</h3>
+
+<p>Syntax:  <code>ISON &lt;nicknames&gt;</code></p>
+
+<blockquote>
+<p>Queries the server to see if the clients in the space-separated list  are currently on the network. The server returns only the nicknames that are on the network in a space-separated list. If none of the clients are on the network the server returns an empty list.</p>
+</blockquote>
+
+<h3>JOIN</h3>
+
+<p>Syntax:  <code>JOIN &lt;channels&gt; [&lt;keys&gt;]</code></p>
+
+<blockquote>
+<p>Makes the client join the channels in the comma-separated list , specifying the passwords, if needed, in the comma-separated list . If the channel(s) do not exist then they will be created.</p>
+</blockquote>
+
+<h3>KICK</h3>
+
+<p>Syntax:  <code>KICK &lt;channel&gt; &lt;client&gt; [&lt;message&gt;]</code></p>
+
+<blockquote>
+<p>Forcibly removes  from . This command may only be issued by channel operators.</p>
+</blockquote>
+
+<h3>KILL</h3>
+
+<p>Syntax:  <code>KILL &lt;client&gt; &lt;comment&gt;</code></p>
+
+<blockquote>
+<p>Forcibly removes  from the network. This command may only be issued by IRC operators.</p>
+</blockquote>
+
+<h3>LIST</h3>
+
+<p>Syntax:  <code>LIST [&lt;channels&gt;]</code></p>
+
+<blockquote>
+<p>Lists all channels on the server. If the comma-separated list  is given, it will return the channel topics.</p>
+</blockquote>
+
+<h3>LUSERS</h3>
+
+<p>Syntax:  <code>LUSERS [&lt;mask&gt;]</code></p>
+
+<blockquote>
+<p>Returns statistics about the size of the network. If called with no arguments, the statistics will reflect the entire network. If  is given, it will return only statistics reflecting the masked subset of the network.</p>
+</blockquote>
+
+<h3>MODE</h3>
+
+<p>Syntax:  <code>MODE &lt;nickname&gt; &lt;flags&gt; [&lt;args&gt;]</code></p>
+
+<p>Syntax:  <code>MODE &lt;channel&gt; &lt;flags&gt; [&lt;args&gt;]</code></p>
+
+<blockquote>
+<p>The MODE command is dual-purpose. It can be used to set both user and channel modes.</p>
+</blockquote>
+
+<h3>MOTD</h3>
+
+<p>Syntax:  <code>MOTD</code></p>
+
+<blockquote>
+<p>Returns the message of the day on the current server.</p>
+</blockquote>
+
+<h3>NAMES</h3>
+
+<p>Syntax:  <code>NAMES [&lt;channels&gt;]</code></p>
+
+<blockquote>
+<p>Returns a list of who is on the comma-separated list of , by channel name. If  is omitted, all users are shown, grouped by channel name with all users who are not on a channel being shown as part of channel "*".</p>
+</blockquote>
+
+<h3>NICK</h3>
+
+<p>Syntax:  <code>NICK &lt;nickname&gt;</code></p>
+
+<blockquote>
+<p>Allows a client to change their IRC nickname.</p>
+</blockquote>
+
+<h3>NOTICE</h3>
+
+<p>Syntax:  <code>NOTICE &lt;msgtarget&gt; &lt;message&gt;</code></p>
+
+<blockquote>
+<p>This command works similarly to PRIVMSG, except automatic replies must never be sent in reply to NOTICE messages.</p>
+</blockquote>
+
+<h3>OPER</h3>
+
+<p>Syntax:  <code>OPER &lt;username&gt; &lt;password&gt;</code></p>
+
+<blockquote>
+<p>Authenticates a user as an IRC operator on the current server.</p>
+</blockquote>
+
+<h3>PART</h3>
+
+<p>Syntax:  <code>PART &lt;channels&gt; [&lt;message&gt;]</code></p>
+
+<blockquote>
+<p>Causes a user to leave the channels in the comma-separated list .</p>
+</blockquote>
+
+<h3>PASS</h3>
+
+<p>Syntax:  <code>PASS &lt;password&gt;</code></p>
+
+<blockquote>
+<p>Sets a connection password. This command must be sent before the NICK/USER registration combination.</p>
+</blockquote>
+
+<h3>PING</h3>
+
+<p>Syntax:  <code>PING &lt;server&gt;</code></p>
+
+<blockquote>
+<p>Tests the presence of a connection. A PING message results in a PONG reply.</p>
+</blockquote>
+
+<h3>PONG</h3>
+
+<p>Syntax:  <code>PONG &lt;server&gt;</code></p>
+
+<blockquote>
+<p>This command is a reply to the PING command and works in much the same way.</p>
+</blockquote>
+
+<h3>PRIVMSG</h3>
+
+<p>Syntax:  <code>PRIVMSG &lt;msgtarget&gt; &lt;message&gt;</code></p>
+
+<blockquote>
+<p>Sends  to , which is usually a user or channel.</p>
+</blockquote>
+
+<h3>QUIT</h3>
+
+<p>Syntax:  <code>QUIT [&lt;message&gt;]</code></p>
+
+<blockquote>
+<p>Disconnects the user from the server.</p>
+</blockquote>
+
+<h3>REHASH</h3>
+
+<p>Syntax:  <code>REHASH</code></p>
+
+<blockquote>
+<p>Causes the server to re-read and re-process its configuration file(s). This command can only be sent by IRC Operators.</p>
+</blockquote>
+
+<h3>RESTART</h3>
+
+<p>Syntax:  <code>RESTART</code></p>
+
+<blockquote>
+<p>Restarts a server. It may only be sent by IRC Operators.</p>
+</blockquote>
+
+<h3>STATS</h3>
+
+<p>Syntax:  <code>STATS &lt;query&gt;</code></p>
+
+<blockquote>
+<p>Returns statistics about the current server.</p>
+</blockquote>
+
+<h3>TIME</h3>
+
+<p>Syntax:  <code>TIME</code></p>
+
+<blockquote>
+<p>Returns the local time on the current server.</p>
+</blockquote>
+
+<h3>TOPIC</h3>
+
+<p>Syntax:  <code>TOPIC &lt;channel&gt; [&lt;topic&gt;]</code></p>
+
+<blockquote>
+<p>Allows the client to query or set the channel topic on . If  is given, it sets the channel topic to . If channel mode +t is set, only a channel operator may set the topic.</p>
+</blockquote>
+
+<h3>USER</h3>
+
+<p>Syntax:  <code>USER &lt;user&gt; &lt;mode&gt; &lt;unused&gt; &lt;realname&gt;</code></p>
+
+<blockquote>
+<p>This command is used at the beginning of a connection to specify the username, hostname, real name and initial user modes of the connecting client.  may contain spaces, and thus must be prefixed with a colon.</p>
+</blockquote>
+
+<h3>VERSION</h3>
+
+<p>Syntax:  <code>VERSION</code></p>
+
+<blockquote>
+<p>Returns the version of the current server.</p>
+</blockquote>
+
+<h3>WALLOPS</h3>
+
+<p>Syntax:  <code>WALLOPS &lt;message&gt;</code></p>
+
+<blockquote>
+<p>Sends  to all operators connected to the server, or all users with user mode 'w' set.</p>
+</blockquote>
+
+<h3>WHO</h3>
+
+<p>Syntax:  <code>WHO &lt;name&gt;</code></p>
+
+<blockquote>
+<p>Returns a list of users who match .</p>
+</blockquote>
+
+<h3>WHOIS</h3>
+
+<p>Syntax:  <code>WHOIS &lt;nicknames&gt;</code></p>
+
+<blockquote>
+<p>Returns information about the comma-separated list of nicknames masks .</p>
+</blockquote>
+
+<h3>WHOWAS</h3>
+
+<p>Syntax:  <code>WHOWAS &lt;nickname&gt;</code></p>
+
+<blockquote>
+<p>Used to return information about a nickname that is no longer in use (due to client disconnection, or nickname changes).</p>
+</blockquote>
         </section>
 
         <footer>
