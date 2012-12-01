@@ -22,9 +22,9 @@
 			}
 		}
 		
-		public static function triggerEvent($event, $params) {
+		public static function triggerEvent($eventname, $params) {
 			foreach (self::$events as $event) {
-				if (strtolower($event[0]) == strtolower($event)) {
+				if (strtolower($event[0]) == strtolower($eventname)) {
 					$module = $event[1];
 					$callback = $event[2];
 					$module->$callback($params);

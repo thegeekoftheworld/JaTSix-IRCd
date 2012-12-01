@@ -22,11 +22,5 @@
 				}
 			}
 		}
-		
-		public function broadcastMessage($params) {
-			foreach ($this->members as $member) {
-				if ($member->getNick() != $params[]])
-			}
-		}
 	}
 ?>

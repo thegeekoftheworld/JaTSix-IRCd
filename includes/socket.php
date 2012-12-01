@@ -42,8 +42,10 @@
 		
 		public function getClientSocketIDs() {
 			$ids = array();
-			foreach ($this->clients as $id => $value) {
-				$ids[] = $id;
+			if (count($this->clients) > 0) {
+				foreach ($this->clients as $id => $value) {
+					$ids[] = $id;
+				}
 			}
 			
 			return $ids;
@@ -55,6 +57,11 @@
 		
 		public function getSocket() {
 			return $this->socket;
+		}
+		
+		public function killClient($id) {
+			socket_close($this->clients[$id]);
+			$this->clients[$id] = false;
 		}
 		
 		public function receiveData($id) {
@@ -72,7 +79,7 @@
 		}
 		
 		public function sendData($id, $data) {
-			return socket_send($this->clients[$id], trim($data)."\n", strlen(trim($data)."\n"));
+			return socket_send($this->clients[$id], trim($data)."\n", strlen(trim($data)."\n"), 0);
 		}
 	}
 ?>

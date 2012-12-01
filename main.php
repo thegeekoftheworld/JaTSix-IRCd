@@ -1,4 +1,8 @@
 <?php
+	require_once("includes/channel.php");
+	require_once("includes/client.php");
+	require_once("includes/clientManagement.php");
+	require_once("includes/configuration.php");
 	require_once("includes/eventHandling.php");
 	require_once("includes/moduleManagement.php");
 	require_once("includes/socket.php");
@@ -12,9 +16,12 @@
 		}
 	}
 	
+	SocketManagement::listenOn("127.0.0.1", "6667");
+	SocketManagement::listenOn("127.0.0.1", "6697");
+	
 	while (true) {
 		foreach (SocketManagement::getSocketIDs() as $sid) {
-			$socket = SocketManagment::getSocketByID($sid);
+			$socket = SocketManagement::getSocketByID($sid);
 			
 			$newClientID = $socket->acceptNewClient();
 			if ($newClientID != false) {
@@ -22,8 +29,7 @@
 			}
 			
 			foreach ($socket->getClientSocketIDs() as $cid) {
-				$clientSocket = $socket->getClientSocketByID($cid);
-				$data = $clientSocket->receiveData($cid);
+				$data = $socket->receiveData($cid);
 				if ($data != false) {
 					EventHandling::triggerEvent("rawDataReceived", array($sid, $cid, $data));
 				}

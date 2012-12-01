@@ -15,15 +15,16 @@
 		}
 		
 		public function setIdent($ident) {
-			if (!preg_match("/[^a-zA-Z0-9_-\[]{}^`|]/", $nick) && $ident != null) {
-				$this->nick = $nick;
+			if (!preg_match("/[^a-zA-Z0-9]/", $ident) && $ident != null) {
+				echo $ident."\n";
+				$this->ident = $ident;
 				return true;
 			}
 			return false;
 		}
 		
 		public function setNick($nick) {
-			if (!preg_match("/[^a-zA-Z0-9_-\[]{}^`|]/", $nick) && $nick != null) {
+			if (!preg_match("/[^a-zA-Z0-9_[]{}^`|-]/", $nick) && $nick != null) {
 				$this->nick = $nick;
 				return true;
 			}
@@ -45,6 +46,14 @@
 		
 		public function getRealName() {
 			return $this->realname;
+		}
+		
+		public function getCID() {
+			return $this->cid;
+		}
+		
+		public function getSID() {
+			return $this->sid;
 		}
 		
 		public function sendData($data) {
