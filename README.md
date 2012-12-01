@@ -10,6 +10,8 @@ The objective that v1.0 of this project aims to meet is:
 
 * To provide a linking protocol compatible with other Modfwango daemons and Charybdis.
 
+The project will become available for public use when v0.9 is done and compliant to RFC 1459 according to the guidelines below.
+
 RFC 1459 Compliancy
 ===================
 
@@ -92,7 +94,7 @@ Syntax:  ```NAMES [<channels>]```
 
 > Returns a list of who is on the comma-separated list of <channels>, by channel name. If <channels> is omitted, all users are shown, grouped by channel name with all users who are not on a channel being shown as part of channel "*".
 
-###NICK
+###NICK (DONE)
 Syntax:  ```NICK <nickname>```
 
 > Allows a client to change their IRC nickname.
@@ -162,7 +164,7 @@ Syntax:  ```TOPIC <channel> [<topic>]```
 
 > Allows the client to query or set the channel topic on <channel>. If <topic> is given, it sets the channel topic to <topic>. If channel mode +t is set, only a channel operator may set the topic.
 
-###USER
+###USER (DONE)
 Syntax:  ```USER <user> <mode> <unused> <realname>```
 
 > This command is used at the beginning of a connection to specify the username, hostname, real name and initial user modes of the connecting client. <realname> may contain spaces, and thus must be prefixed with a colon.
