@@ -19,6 +19,15 @@
 			return false;
 		}
 		
+		public static function getClientByNick($nick) {
+			foreach (self::$clients as $client) {
+				if (strtolower($client->getNick()) == strtolower($nick)) {
+					return $client;
+				}
+			}
+			return false;
+		}
+		
 		public static function introduceClient() {
 			return true;
 		}

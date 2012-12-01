@@ -15,8 +15,7 @@
 		}
 		
 		public function setIdent($ident) {
-			if (!preg_match("/[^a-zA-Z0-9]/", $ident) && $ident != null) {
-				echo $ident."\n";
+			if (!preg_match("/[^a-zA-Z0-9_[]{}^`|-]/", $ident) && $ident != null) {
 				$this->ident = $ident;
 				return true;
 			}
