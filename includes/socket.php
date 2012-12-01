@@ -70,5 +70,9 @@
 			}
 			return false;
 		}
+		
+		public function sendData($id, $data) {
+			return socket_send($this->clients[$id], trim($data)."\n", strlen(trim($data)."\n"));
+		}
 	}
 ?>
