@@ -3,15 +3,15 @@
 		public $name = "Nick";
 		
 		public function receiveData($params) {
-			if (preg_match("/^NICK (.*)/", trim($params[2]), $matches)) {
+			if (preg_match("/^NICK(.*)/", ltrim($params[2]), $matches)) {
+				$client = ClientManagement::getClientBySocketID($params[0], $params[1]);
 				$nick = trim($matches[1]);
 				if ($nick != null) {
 					if (!stristr($nick, " ")) {
-						$client = ClientManagement::getClientBySocketID($params[0], $params[1]);
 						if (ClientManagement::getClientByNick($nick) == false) {
 							if ($client->setNick($nick)) {
 								if ($client->getIdent() != null) {
-									ClientManagement::introduceClient();
+									ClientManagement::introduceClient($params[0], $params[1]);
 								}
 								return true;
 							}

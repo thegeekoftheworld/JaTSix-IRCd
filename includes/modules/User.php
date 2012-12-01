@@ -22,7 +22,7 @@
 					if ($client->setIdent($ident)) {
 						$client->setRealName($realname);
 						if ($client->getNick() != null) {
-							ClientManagement::introduceClient();
+							ClientManagement::introduceClient($params[0], $params[1]);
 						}
 					}
 					else {

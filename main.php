@@ -1,5 +1,6 @@
 <?php
 	require_once("includes/channel.php");
+	require_once("includes/channelManagement.php");
 	require_once("includes/client.php");
 	require_once("includes/clientManagement.php");
 	require_once("includes/configuration.php");
@@ -7,6 +8,8 @@
 	require_once("includes/moduleManagement.php");
 	require_once("includes/socket.php");
 	require_once("includes/socketManagement.php");
+	
+	Configuration::loadConfigs();
 	
 	$file = "conf/modules.conf";
 	if (file_exists($file) && is_readable($file)) {
