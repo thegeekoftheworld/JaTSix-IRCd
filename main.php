@@ -5,6 +5,7 @@
 	require_once("includes/clientManagement.php");
 	require_once("includes/configuration.php");
 	require_once("includes/eventHandling.php");
+	require_once("includes/modeManagement.php");
 	require_once("includes/moduleManagement.php");
 	require_once("includes/socket.php");
 	require_once("includes/socketManagement.php");
