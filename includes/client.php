@@ -8,10 +8,14 @@
 		private $realname;
 		private $modes;
 		private $socketid;
+		public $lastPing;
+		public $sentPing;
 		
 		public function __construct($sid, $cid) {
 			$this->sid = $sid;
 			$this->cid = $cid;
+			$this->lastPing = time();
+			$this->sentPing = false;
 		}
 		
 		public function setIdent($ident) {
@@ -56,8 +60,8 @@
 		}
 		
 		public function sendData($data) {
-			$socket = SocketManagement::getSocketByID($this->socketid[0]);
-			$socket->sendData($this->socketid[1], $data);
+			$socket = SocketManagement::getSocketByID($this->sid);
+			$socket->sendData($this->cid, $data);
 		}
 	}
 ?>

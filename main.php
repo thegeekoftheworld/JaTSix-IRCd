@@ -23,6 +23,8 @@
 	SocketManagement::listenOn("127.0.0.1", "6667");
 	SocketManagement::listenOn("127.0.0.1", "6697");
 	
+	$startTime = time();
+	
 	while (true) {
 		foreach (SocketManagement::getSocketIDs() as $sid) {
 			$socket = SocketManagement::getSocketByID($sid);
@@ -37,6 +39,7 @@
 				if ($data != false) {
 					EventHandling::triggerEvent("rawDataReceived", array($sid, $cid, $data));
 				}
+				EventHandling::triggerEvent("clientLoopFinished", array($sid, $cid));
 			}
 		}
 		usleep(10000);
