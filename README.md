@@ -1,14 +1,14 @@
-Modfwango
+JaTSix IRCd
 =========
 
-Modfwango is an IRCd written in PHP.  The two objectives that v0.9 of this project aims to meet are:
+JaTSix is an IRCd written in PHP.  JaTSix IRCd stands for "Just another TS 6 IRCd."  The two objectives that v0.9 of this project aims to meet are:
 
 * To be (almost) RFC 1459 compliant.  See below for more details.
 * To provide a standalone IRC daemon that is unlinkable.
 
 The objective that v1.0 of this project aims to meet is:
 
-* To provide a linking protocol compatible with other Modfwango daemons and Charybdis.
+* To provide a linking protocol compatible with other JaTSix IRCd daemons and Charybdis.
 
 The project will become available for public use when v0.9 is done and compliant to RFC 1459 according to the guidelines below.
 

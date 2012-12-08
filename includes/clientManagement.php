@@ -44,9 +44,9 @@
 			$client = self::getClientBySocketID($sid, $cid);
 			$socket = SocketManagement::getSocketByID($sid);
 			$socket->sendData($cid, ":".Configuration::getServerName()." 001 ".$client->getNick()." :Welcome to the ".Configuration::getNetworkName()." IRC network, ".$client->getNick()."!");
-			$socket->sendData($cid, ":".Configuration::getServerName()." 002 ".$client->getNick()." :Your host is ".Configuration::getServerName().", running version modfwango-v0.9");
+			$socket->sendData($cid, ":".Configuration::getServerName()." 002 ".$client->getNick()." :Your host is ".Configuration::getServerName().", running version jatsix-v0.9");
 			$socket->sendData($cid, ":".Configuration::getServerName()." 003 ".$client->getNick()." :This server was created Sat Dec 01 2012 at 00:25:35 CST");
-			$socket->sendData($cid, ":".Configuration::getServerName()." 004 ".$client->getNick()." ".Configuration::getServerName()." modfwango-v0.9 \0 \0 \0 \0");
+			$socket->sendData($cid, ":".Configuration::getServerName()." 004 ".$client->getNick()." ".Configuration::getServerName()." jatsix-v0.9 \0 \0 \0 \0");
 			$socket->sendData($cid, ":".Configuration::getServerName()." 005 ".$client->getNick()." PREFIX=(ov)@+ CHANTYPES=# :are supported by this server");
 			$socket->sendData($cid, ":".Configuration::getServerName()." 251 ".$client->getNick()." :There are ".self::countVisibleUsers()." users and 0 invisible on 1 servers");
 			$socket->sendData($cid, ":".Configuration::getServerName()." 252 ".$client->getNick()." ".self::countIRCServerOperators()." :IRC Operators online");
